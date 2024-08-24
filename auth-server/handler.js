@@ -68,7 +68,7 @@ module.exports.getCalendarEvents = async (event) => {
   return new Promise((resolve, reject) => {
     calendar.events.list(
       {
-        calendarId: CALENDAR_ID,
+        calendarId: "fullstackwebdev@careerfoundry.com",
         auth: oAuth2Client,
         timeMin: new Date().toISOString(),
         singleEvents: true,
@@ -89,7 +89,7 @@ module.exports.getCalendarEvents = async (event) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
       },
-      body: JSON.stringify({ events: results.data.items }),
+      body: JSON.stringify(results.data.items),
     };
   })
   .catch((error) => {

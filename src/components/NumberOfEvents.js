@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NumberOfEvents = () => {
+const NumberOfEvents = ({ setCurrentNOE}) => {
     const [number, setNumber] = useState(32)
     const handleInputChanged = (e) => {
         const value = e.target.value
@@ -10,6 +10,7 @@ const NumberOfEvents = () => {
             setNumber(e.target.value)
         }
 
+        setCurrentNOE = value;
         setNumber(value)
     }
 
@@ -19,7 +20,7 @@ const NumberOfEvents = () => {
             <input
                 type="text"
                 className="number"
-                value={number}
+                value={number ? number : setCurrentNOE}
                 onChange={handleInputChanged}
             />
         </div>

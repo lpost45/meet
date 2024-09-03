@@ -16,7 +16,7 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberOfEventsCompoonent.getByRole('textbox')).toHaveValue('32');
     });
     test('textbox value changes according to what the user types', async () => {
-        numberOfEvents = NumberOfEventsCompoonent.getByRole('textbox');
+        const numberOfEvents = NumberOfEventsCompoonent.getByRole('textbox');
         const user = userEvent.setup();
         await user.type(numberOfEvents, '{backspace}{backspace}10');
         const allEvents = await getEvents();

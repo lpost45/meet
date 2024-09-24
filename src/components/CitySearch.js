@@ -4,12 +4,6 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [query, setQuery] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    const handleItemClicked = (event) => {
-        const value = event.target.textContent;
-        setQuery(value);
-        setShowSuggestions(false); // to hide the list
-        setCurrentCity(value);
-        };
     const handleInputChanged = (event) => {
         const value = event.target.value;
         const filteredLocations = allLocations ? allLocations.filter((location) => {
@@ -18,8 +12,16 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
 
         setQuery(value);
         setSuggestions(filteredLocations);
-}
-return (
+        };
+
+    const handleItemClicked = (event) => {
+        const value = event.target.textContent;
+        setQuery(value);
+        setShowSuggestions(false); // to hide the list
+        setCurrentCity(value);
+        };
+
+  return (
     <div id="city-search">
       <input
         type="text"

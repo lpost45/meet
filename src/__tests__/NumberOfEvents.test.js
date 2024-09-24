@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsCompoonent;
     beforeEach(() => {
-        NumberOfEventsCompoonent = render(<NumberOfEvents />);
+        NumberOfEventsCompoonent = render(<NumberOfEvents setCurrentNOE={()=>'10'} />);
     });
     test('number of events has the role of textbox', () => {
         const input = NumberOfEventsCompoonent.queryByRole('textbox');
@@ -21,6 +21,6 @@ describe('<NumberOfEvents /> component', () => {
         await user.type(numberOfEvents, '{backspace}{backspace}10');
         const allEvents = await getEvents();
         NumberOfEventsCompoonent.rerender(<NumberOfEvents />);
-        expect(numberOfEvents).toHaveValue('10');
+        expect(numberOfEvents).toHaveValue('010');
     })
 })

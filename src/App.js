@@ -3,7 +3,7 @@ import EventList from './components/EventList';
 import './App.css';
 import NumberOfEvents from './components/NumberOfEvents';
 import mockData from './mock-data';
-import { extractLocations } from './api';
+import { extractLocations, getEvents } from './api';
 import { useEffect, useState } from 'react';
 const App = () => {
   const [allLocations, setAllLocations] = useState([]);
@@ -12,7 +12,7 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
 
   const fetchData = async () => {
-    const allEvents = mockData;
+    const allEvents = await getEvents();
     const filteredEvents = currentCity === "See all cities" ? allEvents : allEvents.filter(event => event.location === currentCity)
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));

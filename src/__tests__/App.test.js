@@ -53,14 +53,16 @@ describe('<App /> integration', () => {
     const user = userEvent.setup();
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;
-
-    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
-    const NumberOfEventsInput = within(NumberOfEventsDOM).queryByRole('numberOfEventsInput');
-
-    await user.type(NumberOfEventsInput, '{backspace}{backspace}10');
-
-    const EventListDOM = AppDOM.querySelector('#event-list');
-    const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
-    expect(allRenderedEventItems.length).toBe(10);
-  });
+    
+      const NumberOfEventsDOM = AppDOM.querySelector('#numberOfEvents');
+      const NumberOfEventsInput =
+        NumberOfEventsDOM.querySelector('#number-of-events');
+    
+      await user.type(NumberOfEventsInput, '{backspace}{backspace}10');
+    
+      const EventListDOM = AppDOM.querySelector('#event-list');
+      const allRenderedEventItems =
+        within(EventListDOM).queryAllByRole('listitem');
+      expect(allRenderedEventItems.length).toBe(10);
+    });
 })

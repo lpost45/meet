@@ -1,5 +1,7 @@
 import puppeteer from "puppeteer";
 
+jest.setTimeout(5000)
+
 describe('show/hide an event details', () => {
     test('An event element is collapsed by default', async () => {
         const browser = await puppeteer.launch();
@@ -9,7 +11,7 @@ describe('show/hide an event details', () => {
     
         await page.waitForSelector('.event');
     
-        const eventDetails = await page.$('.event .details);
+        const eventDetails = await page.$('.event .details');
         expect(eventDetails).toBeNull();
         browser.close();
       });

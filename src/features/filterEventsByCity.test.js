@@ -14,7 +14,7 @@ defineFeature(feature, test => {
         let AppComponent;
             when('the user opens the app', () => {
                 AppComponent = render(<App />);
-        });
+            });
 
         then('the user should see the list of all upcoming events.', async () => {
             const AppDOM = AppComponent.container.firstChild;

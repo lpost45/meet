@@ -66,7 +66,7 @@ export const getEvents = async () => {
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
-      return result.events;
+      return result.data.items;
     } else return null;
   }
 };

@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
     const [number, setNumber] = useState(32)
     const handleInputChanged = (e) => {
-        const value = e.target.value
+        const value = e.target.value;
+        const nValue = Number(value);
         if (e.target.value === '') {
             setNumber(0)
         } else {
@@ -13,15 +14,15 @@ const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
 
         setCurrentNOE(value);
 
-        let errorText;
-        if (isNaN(value) || value <= 0) {
+        let errorText = '';
+        if (isNaN(nValue) || nValue <= 0) {
             errorText = "Number is not valid.";
-        } else if (value > 32) {
+        } else if (nValue > 32) {
             errorText = "Maximum number of events to be shown is 32.";
         }
         setErrorAlert(errorText);
         if (!errorText) {
-            setCurrentNOE(value);
+            setCurrentNOE(nValue);
         }
 
     }

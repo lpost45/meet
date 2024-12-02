@@ -5,7 +5,7 @@ import NumberOfEvents from './components/NumberOfEvents';
 import mockData from './mock-data';
 import { extractLocations, getEvents } from './api';
 import { useEffect, useState } from 'react';
-import { ErrorAlert, InfoAlert } from './components/Alert';
+import { ErrorAlert, InfoAlert, WarningAlert } from './components/Alert';
 
 const App = () => {
 	const [allLocations, setAllLocations] = useState([]);
@@ -14,6 +14,7 @@ const App = () => {
 	const [currentCity, setCurrentCity] = useState('See all cities');
 	const [infoAlert, setInfoAlert] = useState('');
 	const [errorAlert, setErrorAlert] = useState('');
+  const [warningAlert, setWarningAlert] = useState('');
 
 	const fetchData = async () => {
 		const allEvents = await getEvents();
@@ -25,6 +26,13 @@ const App = () => {
 		setAllLocations(extractLocations(allEvents));
 	};
 	useEffect(() => {
+    let alertText;
+    if (navigator.onLine) {
+      alertText = ""
+    } else {
+      alertText = "The displayed list has been loaded from the cache."
+    }
+    setWarningAlert(alertText);
 		fetchData();
 	}, [currentCity, currentNOE]);
 
@@ -33,6 +41,7 @@ const App = () => {
 			<div className="alerts-container">
 				{infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
 				{errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
 			</div>
 			<CitySearch
 				allLocations={allLocations}

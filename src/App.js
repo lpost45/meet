@@ -54,7 +54,7 @@ const App = () => {
 				setCurrentNOE={setCurrentNOE}
 				setErrorAlert={setErrorAlert}
 			/>
-      <div className="charts-container">
+      <div className="charts-container" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <CityEventsChart 
           allLocations={allLocations} 
           events={events}

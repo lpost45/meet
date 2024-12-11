@@ -48,6 +48,7 @@ export default function CityEventsChart({ allLocations, events }) {
 					type="number"
 					dataKey="count"
 					name="Number of Events"
+                    allowDecimals={false}
 				/>
 				<Tooltip cursor={{ strokeDasharray: '3 3' }} />
 				<Scatter
